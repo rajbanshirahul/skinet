@@ -1,10 +1,12 @@
-import { ShopParams } from './../shared/models/shopParams';
-import { IType } from './../shared/models/productType';
-import { IBrand } from './../shared/models/brand';
-import { IPagination } from '../shared/models/pagination';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+
+import { ShopParams } from './../shared/models/shopParams';
+import { IType } from './../shared/models/productType';
+import { IBrand } from './../shared/models/brand';
+import { IProduct } from '../shared/models/product';
+import { IPagination } from '../shared/models/pagination';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +45,10 @@ export class ShopService {
           return response.body;
         })
       );
+  }
+
+  getProduct(id: number) {
+    return this.http.get<IProduct>(this.baseUrl + 'products/' + id);
   }
 
   getBrands() {
